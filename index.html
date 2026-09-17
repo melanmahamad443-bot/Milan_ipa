@@ -267,14 +267,46 @@ function render() {
   `).join('') : '<div class="empty">هیچ ئەپێک نەدۆزرایەوە 🔎</div>';
 }
 
-searchInput.addEventListener('input', render);
+let currentFilter = 'all';
+
 chips.forEach(c => c.addEventListener('click', () => {
   chips.forEach(x => x.classList.remove('active'));
   c.classList.add('active');
   currentFilter = c.dataset.filter;
   render();
 }));
+
+searchInput.addEventListener('input', render);
+
+function render() {
+  const query = searchInput.value.trim().toLowerCase();
+  
+  const filtered = apps.filter(item => {
+    const matchesFilter = (currentFilter === 'all') || (item.cat === currentFilter);
+    const matchesSearch = item.name.toLowerCase().includes(query);
+    return matchesFilter && matchesSearch;
+  });
+
+  grid.innerHTML = filtered.map(app => `
+    <div class="card">
+      <div class="icon">${app.icon}</div>
+      <div class="title">${app.name}</div>
+      <div class="size">${app.size}</div>
+      <a href="${app.url}" class="download-btn">داونلۆد ⬇️</a>
+    </div>
+  `).join('');
+
+  if (filtered.length === 0) {
+    let emptyText = "هیچ ئەپێک نەدۆزرایەوە 🔍";
+    if (currentFilter === 'vscodes') {
+      emptyText = "هیچ کۆدێک نەدۆزرایەوە 🔍";
+    }
+    grid.innerHTML = `<p class="no-results" style="grid-column: 1/-1; text-align: center; padding: 20px; color: #888;">${emptyText}</p>`;
+  }
+}
+
 render();
+
 </script>
 
 </body>
