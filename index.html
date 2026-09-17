@@ -241,31 +241,44 @@ const apps = [
   { name: "ئەپی خۆم", cat: "app", size: "٣٠ مێگا", icon: "⭐",
     url: "itms-services://?action=download-manifest&url=https://YOUR-SERVER.com/app.plist" },
   */
-const grid = document.getElementById('grid');
+;[const grid = document.getElementById('grid');
 const searchInput = document.getElementById('search');
 const chips = document.querySelectorAll('.chip');
 let currentFilter = 'all';
 
-const catName = { app: 'ئەپ', game: 'یاری', videostar: 'ڤیدیۆستار', vscodes: 'کۆد' };
+const catName = { 
+  app: 'ئەپ', 
+  game: 'یاری', 
+  videostar: 'ڤیدیۆستار', 
+  vscodes: 'کۆد' 
+};
 
 function render() {
   const q = searchInput.value.trim().toLowerCase();
-  const list = apps.filter(a =>
-    (currentFilter === 'all' || a.cat === currentFilter) &&
-    a.name.toLowerCase().includes(q)
-  );
-  grid.innerHTML = list.length ? list.map(a => `
-    <div class="card">
-      <div class="app-icon">${a.icon}</div>
-      <h4>${a.name}</h4>
-      <div class="meta">${a.size}</div>
-      <span class="badge ${a.cat}">${catName[a.cat]}</span>
-      <a class="install-btn" href="${a.url}">⬇ دابەزاندن</a>
-    </div>
-  `).join('') : '<div class="empty">هیچ ئەپێک نەدۆزرایەوە 🔎</div>';
-}
+  const list = apps.filter(a => {
+    const matchesFilter = (currentFilter === 'all') || (a.cat === currentFilter);
+    const matchesSearch = a.name.toLowerCase().includes(q);
+    return matchesFilter && matchesSearch;
+  });
 
-let currentFilter = 'all';
+  if (list.length > 0) {
+    grid.innerHTML = list.map(a => `
+      <div class="card">
+        <div class="app-icon">${a.icon}</div>
+        <h4>${a.name}</h4>
+        <div class="meta">${a.size}</div>
+        <span class="badge ${a.cat}">${catName[a.cat] || 'ئەپ'}</span>
+        <a class="install-btn" href="${a.url}">داونلۆد ⬇️</a>
+      </div>
+    `).join('');
+  } else {
+    let emptyText = "هیچ ئەپێک نەدۆزرایەوە 🔍";
+    if (currentFilter === 'vscodes') {
+      emptyText = "هیچ کۆدێک نەدۆزرایەوە 🔍";
+    }
+    grid.innerHTML = `<div class="empty">${emptyText}</div>`;
+  }
+}
 
 chips.forEach(c => c.addEventListener('click', () => {
   chips.forEach(x => x.classList.remove('active'));
@@ -276,35 +289,7 @@ chips.forEach(c => c.addEventListener('click', () => {
 
 searchInput.addEventListener('input', render);
 
-function render() {
-  const query = searchInput.value.trim().toLowerCase();
-  
-  const filtered = apps.filter(item => {
-    const matchesFilter = (currentFilter === 'all') || (item.cat === currentFilter);
-    const matchesSearch = item.name.toLowerCase().includes(query);
-    return matchesFilter && matchesSearch;
-  });
-
-  grid.innerHTML = filtered.map(app => `
-    <div class="card">
-      <div class="icon">${app.icon}</div>
-      <div class="title">${app.name}</div>
-      <div class="size">${app.size}</div>
-      <a href="${app.url}" class="download-btn">داونلۆد ⬇️</a>
-    </div>
-  `).join('');
-
-  if (filtered.length === 0) {
-    let emptyText = "هیچ ئەپێک نەدۆزرایەوە 🔍";
-    if (currentFilter === 'vscodes') {
-      emptyText = "هیچ کۆدێک نەدۆزرایەوە 🔍";
-    }
-    grid.innerHTML = `<p class="no-results" style="grid-column: 1/-1; text-align: center; padding: 20px; color: #888;">${emptyText}</p>`;
-  }
-}
-
 render();
-
 
 </script>
 
