@@ -225,36 +225,36 @@
    - url   : لینکی دابەزاندن (IPAی خۆت یان لینکی App Store)
 ============================================================ */
 const apps = [
-  { name: "VLC", cat: "app", size: "١٥٠ مێگا", icon: "🎬", url: "https://apps.apple.com/app/vlc-media-player/id650377962" },
-  { name: "ویکیپیدیا", cat: "app", size: "٤٥ مێگا", icon: "📚", url: "https://apps.apple.com/app/wikipedia/id324715238" },
-  { name: "Signal", cat: "app", size: "٩٠ مێگا", icon: "💬", url: "https://apps.apple.com/app/signal-private-messenger/id874139669" },
-  { name: "Firefox", cat: "app", size: "١٢٠ مێگا", icon: "🦊", url: "https://apps.apple.com/app/firefox-private-safe-browser/id989804926" },
-  { name: "Subway Surfers", cat: "game", size: "٢٥٠ مێگا", icon: "🚂", url: "https://apps.apple.com/app/subway-surfers/id512939461" },
-  { name: "Among Us", cat: "game", size: "٥٠٠ مێگا", icon: "🚀", url: "https://apps.apple.com/app/among-us/id1351168404" },
-  { name: "8 Ball Pool", cat: "game", size: "٢٠٠ مێگا", icon: "🎱", url: "https://apps.apple.com/app/8-ball-pool/id543186831" },
-  { name: "Video star_404", cat: "videostar", size: "٣٤٨ مێگا", icon: "🔮", url: "itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/melanmahamad443-bot/Milan_ipa/main/manifest.plist" },
+  { name: "VLC", cat: "app", size: "150 مێگا", icon: "🚀", url: "https://apps.apple.com/app/vlc-media-player/id650377962" },
+  { name: "ویکیپیدیا", cat: "app", size: "45 مێگا", icon: "📚", url: "https://apps.apple.com/app/wikipedia/id324715238" },
+  { name: "Signal", cat: "app", size: "90 مێگا", icon: "💬", url: "https://apps.apple.com/app/signal-private-messenger/id874139669" },
+  { name: "Firefox", cat: "app", size: "120 مێگا", icon: "🦊", url: "https://apps.apple.com/app/firefox-private-safe-browser/id989804926" },
+  { name: "Subway Surfers", cat: "game", size: "250 مێگا", icon: "🏃", url: "https://apps.apple.com/app/subway-surfers/id512939461" },
+  { name: "Among Us", cat: "game", size: "500 مێگا", icon: "👾", url: "https://apps.apple.com/app/among-us/id1351168404" },
+  { name: "8 Ball Pool", cat: "game", size: "200 مێگا", icon: "🎱", url: "https://apps.apple.com/app/8-ball-pool/id543186831" },
+  { name: "Video star_404", cat: "videostar", size: "348 مێگا", icon: "🔮", url: "itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/melanmahamad443-bot/Milan_ipa/main/manifest.plist" }
+];
 
-
-
-
-  /* ✅ نموونە: چۆن IPAی خۆت زیاد بکەیت (IPAی ساینکراو لە سێرڤەرەکەت)
+   /* ✅ نموونە: چۆن IPAی خۆت زیاد بکەیت (IPAی ساینکراو لە سێرڤەرەکەت)
   { name: "ئەپی خۆم", cat: "app", size: "٣٠ مێگا", icon: "⭐",
     url: "itms-services://?action=download-manifest&url=https://YOUR-SERVER.com/app.plist" },
   */
-;[const grid = document.getElementById('grid');
-const searchInput = document.getElementById('search');
+  
+const grid = document.getElementById('grid');
+const searchInput = document.getElementById('search') || document.getElementById('searchInput');
 const chips = document.querySelectorAll('.chip');
 let currentFilter = 'all';
 
-const catName = { 
-  app: 'ئەپ', 
-  game: 'یاری', 
-  videostar: 'ڤیدیۆستار', 
-  vscodes: 'کۆد' 
+const catName = {
+  app: 'ئەپ',
+  game: 'یاری',
+  videostar: 'ڤیدیۆستار',
+  vscodes: 'کۆد'
 };
 
 function render() {
-  const q = searchInput.value.trim().toLowerCase();
+  if (!grid) return;
+  const q = searchInput ? searchInput.value.trim().toLowerCase() : '';
   const list = apps.filter(a => {
     const matchesFilter = (currentFilter === 'all') || (a.cat === currentFilter);
     const matchesSearch = a.name.toLowerCase().includes(q);
@@ -268,7 +268,7 @@ function render() {
         <h4>${a.name}</h4>
         <div class="meta">${a.size}</div>
         <span class="badge ${a.cat}">${catName[a.cat] || 'ئەپ'}</span>
-        <a class="install-btn" href="${a.url}">داونلۆد ⬇️</a>
+        <a class="install-btn" href="${a.url}">داگرتن ⬇️</a>
       </div>
     `).join('');
   } else {
@@ -283,14 +283,15 @@ function render() {
 chips.forEach(c => c.addEventListener('click', () => {
   chips.forEach(x => x.classList.remove('active'));
   c.classList.add('active');
-  currentFilter = c.dataset.filter;
+  currentFilter = c.dataset.filter || 'all';
   render();
 }));
 
-searchInput.addEventListener('input', render);
+if (searchInput) {
+  searchInput.addEventListener('input', render);
+}
 
 render();
-
 </script>
 
 </body>
