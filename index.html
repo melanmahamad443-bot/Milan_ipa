@@ -1,220 +1,260 @@
 <!DOCTYPE html>
 <html lang="ckb" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MILAN STORE | فڕۆشگای میلان</title>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --gold: #d4af37;
-    --gold-light: #f5d76e;
-    --gold-dark: #9c7c1e;
-    --bg: #000000;
-    --card: #111111;
-    --card-hover: #1a1a1a;
-    --border: rgba(212,175,55,.28);
-    --text: #f0ead8;
-    --muted: #9a917c;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Vazirmatn', Tahoma, sans-serif;
-    min-height: 100vh;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MILAN STORE | فڕۆشگای میلان</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #d4af37;
+      --gold-light: #f5d76e;
+      --gold-dark: #9c7c1e;
+      --bg: #000000;
+      --card: #111111;
+      --card-hover: #1a1a1a;
+      --border: rgba(212,175,55,.28);
+      --text: #f0ead8;
+      --muted: #9a917c;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Vazirmatn', Tahoma, sans-serif;
+      min-height: 100vh;
+    }
 
-  /* ===== سەرەوە / لۆگۆ ===== */
-  header {
-    text-align: center;
-    padding: 28px 16px 18px;
-    background: radial-gradient(ellipse at 50% 0%, rgba(212,175,55,.12), transparent 70%);
-    border-bottom: 1px solid var(--border);
-  }
-  header img.logo {
-    width: 130px; height: auto;
-    border-radius: 20px;
-    box-shadow: 0 0 30px rgba(212,175,55,.35);
-  }
-  header h1 {
-    margin-top: 12px;
-    font-size: 1.5rem; font-weight: 800; letter-spacing: 2px;
-    background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  header p.tag { color: var(--muted); font-size: .85rem; margin-top: 4px; }
+    /* Header */
+    header {
+      text-align: center;
+      padding: 28px 16px 18px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(212,175,55,.12), transparent 70%);
+      border-bottom: 1px solid var(--border);
+    }
+    header .logo-placeholder {
+      width: 80px; height: 80px; margin: 0 auto;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.2rem; font-weight: bold; color: #000;
+      box-shadow: 0 0 30px rgba(212,175,55,.35);
+    }
+    header h1 {
+      margin-top: 12px;
+      font-size: 1.5rem; font-weight: 800; letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    header p.tag { color: var(--muted); font-size: .85rem; margin-top: 4px; }
 
-  /* ===== بەشی بەخێربێین ===== */
-  .welcome {
-    text-align: center;
-    padding: 34px 20px 26px;
-  }
-  .welcome h2 {
-    font-size: 1.9rem; font-weight: 800;
-    background: linear-gradient(135deg, #fff, var(--gold-light), var(--gold));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .welcome p { color: var(--muted); margin-top: 10px; font-size: .95rem; max-width: 480px; margin-inline: auto; line-height: 1.9; }
-  .divider {
-    display: flex; align-items: center; justify-content: center; gap: 12px;
-    margin: 22px auto 0; max-width: 320px;
-  }
-  .divider .line { flex:1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
-  .divider .diamond { color: var(--gold); font-size: .8rem; }
+    /* Welcome */
+    .welcome {
+      text-align: center;
+      padding: 34px 20px 26px;
+    }
+    .welcome h2 {
+      font-size: 1.8rem; font-weight: 800;
+      background: linear-gradient(135deg, #fff, var(--gold-light), var(--gold));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .welcome p { color: var(--muted); margin-top: 10px; font-size: .95rem; max-width: 480px; margin-inline: auto; line-height: 1.9; }
+    .divider {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      margin: 22px auto 0; max-width: 320px;
+    }
+    .divider .line { flex:1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .divider .diamond { color: var(--gold); font-size: .8rem; }
 
-  /* ===== گەڕان و فلتەر ===== */
-  .controls {
-    position: sticky; top: 0; z-index: 10;
-    background: rgba(0,0,0,.92);
-    backdrop-filter: blur(10px);
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--border);
-  }
-  .search-box {
-    display: flex; align-items: center; gap: 8px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 10px 14px;
-  }
-  .search-box input {
-    flex: 1; background: none; border: none; outline: none;
-    color: var(--text); font-family: inherit; font-size: .95rem;
-  }
-  .search-box input::placeholder { color: var(--muted); }
-  .search-box .icon { color: var(--gold); }
-  .chips { display: flex; gap: 8px; margin-top: 10px; justify-content: center; }
-  .chip {
-    padding: 7px 18px; border-radius: 999px;
-    border: 1px solid var(--border);
-    background: var(--card); color: var(--muted);
-    font-family: inherit; font-size: .85rem; cursor: pointer;
-    transition: all .2s;
-  }
-  .chip.active {
-    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-    color: #000; font-weight: 700; border-color: var(--gold);
-  }
+    /* Controls */
+    .controls {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(0,0,0,.92);
+      backdrop-filter: blur(10px);
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .search-box {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 14px;
+    }
+    .search-box input {
+      flex: 1; background: none; border: none; outline: none;
+      color: var(--text); font-family: inherit; font-size: .95rem;
+    }
+    .search-box input::placeholder { color: var(--muted); }
+    .search-box .icon { color: var(--gold); }
+    .chips { display: flex; gap: 8px; margin-top: 10px; justify-content: center; flex-wrap: wrap; }
+    .chip {
+      padding: 7px 18px; border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--card); color: var(--muted);
+      font-family: inherit; font-size: .85rem; cursor: pointer;
+      transition: all .2s;
+    }
+    .chip.active {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: #000; font-weight: 700; border-color: var(--gold);
+    }
 
-  /* ===== هێڵی جیاوازی بەخێربێین و ئەپەکان ===== */
-  .section-title {
-    display: flex; align-items: center; gap: 14px;
-    padding: 26px 20px 6px;
-  }
-  .section-title h3 { font-size: 1.1rem; color: var(--gold-light); white-space: nowrap; }
-  .section-title .line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent); }
+    /* Cards Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 14px;
+      padding: 20px 16px;
+      max-width: 900px; margin-inline: auto;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px 12px;
+      text-align: center;
+      transition: transform .2s, background .2s, box-shadow .2s;
+    }
+    .card:hover {
+      background: var(--card-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(212,175,55,.15);
+    }
+    .app-icon {
+      width: 64px; height: 64px; margin-inline: auto;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #1d1a10, #2b2513);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+    }
+    .card h4 { margin-top: 10px; font-size: .95rem; font-weight: 600; }
+    .card .meta { color: var(--muted); font-size: .75rem; margin-top: 3px; }
+    .badge {
+      display: inline-block; margin-top: 6px;
+      font-size: .68rem; padding: 2px 10px; border-radius: 999px;
+      border: 1px solid var(--border); color: var(--gold-light);
+    }
+    .badge.game { color: #8ecfff; border-color: rgba(142,207,255,.3); }
+    .badge.videostar { color: #ff8edb; border-color: rgba(255,142,219,.3); }
+    .badge.vscodes { color: #8effa3; border-color: rgba(142,255,163,.3); }
+    
+    .install-btn {
+      display: block; margin-top: 12px;
+      padding: 9px 0; border-radius: 12px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+      color: #000; font-weight: 800; font-size: .85rem;
+      text-decoration: none; font-family: inherit;
+    }
 
-  /* ===== کارتی ئەپەکان ===== */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 14px;
-    padding: 16px;
-    max-width: 900px; margin-inline: auto;
-  }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 16px 12px;
-    text-align: center;
-    transition: transform .2s, background .2s, box-shadow .2s;
-  }
-  .card:hover {
-    background: var(--card-hover);
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(212,175,55,.15);
-  }
-  .app-icon {
-    width: 64px; height: 64px; margin-inline: auto;
-    border-radius: 16px;
-    background: linear-gradient(135deg, #1d1a10, #2b2513);
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 2rem;
-    box-shadow: inset 0 0 12px rgba(212,175,55,.1);
-  }
-  .app-icon img { width: 100%; height: 100%; border-radius: 16px; object-fit: cover; }
-  .card h4 { margin-top: 10px; font-size: .95rem; font-weight: 600; }
-  .card .meta { color: var(--muted); font-size: .75rem; margin-top: 3px; }
-  .badge {
-    display: inline-block; margin-top: 6px;
-    font-size: .68rem; padding: 2px 10px; border-radius: 999px;
-    border: 1px solid var(--border); color: var(--gold-light);
-  }
-  .badge.game { color: #8ecfff; border-color: rgba(142,207,255,.3); }
-  .install-btn {
-    display: block; margin-top: 12px;
-    padding: 9px 0; border-radius: 12px;
-    background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
-    color: #000; font-weight: 800; font-size: .9rem;
-    text-decoration: none; font-family: inherit;
-    transition: filter .2s;
-  }
-  .install-btn:active { filter: brightness(1.2); }
+    .empty { text-align: center; color: var(--muted); padding: 40px 0; grid-column: 1/-1; }
 
-  .empty { text-align: center; color: var(--muted); padding: 40px 0; grid-column: 1/-1; }
-
-  /* ===== فوتەر ===== */
-  footer {
-    text-align: center;
-    padding: 28px 16px 40px;
-    border-top: 1px solid var(--border);
-    color: var(--muted); font-size: .78rem; line-height: 2;
-  }
-  footer .gold { color: var(--gold); }
-</style>
+    footer {
+      text-align: center;
+      padding: 28px 16px 40px;
+      border-top: 1px solid var(--border);
+      color: var(--muted); font-size: .78rem; line-height: 2;
+    }
+    footer .gold { color: var(--gold); }
+  </style>
 </head>
 <body>
 
 <header>
-  <img class="logo" src="logo.png" alt="MILAN STORE Logo">
+  <div class="logo-placeholder">M</div>
   <h1>MILAN STORE</h1>
-  <p class="tag">فڕۆشگای میلان بۆ بەرنامە و یارییەکان</p>
+  <p class="tag">فڕۆشگای فەرمی میلان بۆ بەرنامە و یارییەکان</p>
 </header>
 
-<section class="welcome">
-  <h2>بەخێربێن بۆ فڕۆشگای میلان</h2>
-  <p>باشترین بەرنامە و یارییە دەستکاری کراوەکان بە ئاسانی دابەزێنە.</p>
+<div class="welcome">
+  <h2>بەخێربێیت بۆ فڕۆشگای میلان 🖤✨</h2>
+  <p>باشترین بەرنامە و یارییە دەستکاری کراوەکان لێرە بەدەستبهێنە بە ئاسانترین شێواز!</p>
   <div class="divider">
     <div class="line"></div>
     <div class="diamond">◆</div>
     <div class="line"></div>
   </div>
-</section>
+</div>
 
 <div class="controls">
   <div class="search-box">
     <span class="icon">🔍</span>
-    <input type="text" placeholder="گەڕان بۆ بەرنامە یان یاری...">
+    <input type="text" id="searchInput" placeholder="گەڕان بۆ بەرنامە یان یاری...">
   </div>
   <div class="chips">
-    <button class="chip active">هەموی</button>
-    <button class="chip">بەرنامەکان</button>
-    <button class="chip">یارییەکان</button>
+    <button class="chip active" data-filter="all">هەمووی</button>
+    <button class="chip" data-filter="game">🎮 یارییەکان</button>
+    <button class="chip" data-filter="videostar">⭐ ڤیدیۆستار</button>
+    <button class="chip" data-filter="vscodes">📜 کۆدەکان</button>
   </div>
 </div>
 
-<div class="section-title">
-  <h3>بەرنامە نوێیەکان</h3>
-  <div class="line"></div>
-</div>
-
-<main class="grid">
-  <!-- نموونەی کارتی بەرنامەیەک -->
-  <div class="card">
-    <div class="app-icon">📱</div>
-    <h4>ناوی بەرنامە</h4>
-    <p class="meta">وەشان: 1.0</p>
-    <span class="badge">تایبەت</span>
-    <a href="#" class="install-btn">دابەزاندن</a>
-  </div>
-</main>
+<div class="grid" id="grid"></div>
 
 <footer>
-  <p>سەرجەم مافەکانی پارێزراوە بۆ <span class="gold">MILAN STORE</span></p>
+  <p>© 2026 <span class="gold">MILAN STORE</span> • هەموو مافەکانی پارێزراوە</p>
+  <p>گەشەپێدراوە لەلایەن <span class="gold">M i L A N</span> 👑</p>
 </footer>
+
+<script>
+  const apps = [
+    { name: "VideoStar Pro", cat: "videostar", icon: "⭐", size: "85 MB", url: "#" },
+    { name: "PicsArt Gold", cat: "videostar", icon: "🎨", size: "110 MB", url: "#" },
+    { name: "PUBG Mobile", cat: "game", icon: "🎯", size: "1.8 GB", url: "#" },
+    { name: "GTA San Andreas", cat: "game", icon: "🚗", size: "2.1 GB", url: "#" },
+    { name: "Shake Code 01", cat: "vscodes", icon: "⚡", size: "5 KB", url: "#" }
+  ];
+
+  const catName = {
+    game: 'یاری',
+    videostar: 'ڤیدیۆستار',
+    vscodes: 'کۆد'
+  };
+
+  const searchInput = document.getElementById('searchInput');
+  const grid = document.getElementById('grid');
+  const chips = document.querySelectorAll('.chip');
+  let currentFilter = 'all';
+
+  function render() {
+    const q = searchInput.value.trim().toLowerCase();
+    const list = apps.filter(a => {
+      const matchesFilter = (currentFilter === 'all') || (a.cat === currentFilter);
+      const matchesSearch = a.name.toLowerCase().includes(q);
+      return matchesFilter && matchesSearch;
+    });
+
+    if (list.length > 0) {
+      grid.innerHTML = list.map(a => `
+        <div class="card">
+          <div class="app-icon">${a.icon}</div>
+          <h4>${a.name}</h4>
+          <div class="meta">${a.size}</div>
+          <span class="badge ${a.cat}">${catName[a.cat] || 'گشتی'}</span>
+          <a class="install-btn" href="${a.url}">داگرتن ⬇️</a>
+        </div>
+      `).join('');
+    } else {
+      let emptyText = "هیچ شوێنێک نەدۆزرایەوە 🔍";
+      if (currentFilter === 'vscodes') {
+        emptyText = "هیچ کۆدێک نەدۆزرایەوە 🔍";
+      }
+      grid.innerHTML = `<div class="empty">${emptyText}</div>`;
+    }
+  }
+
+  chips.forEach(c => c.addEventListener('click', () => {
+    chips.forEach(x => x.classList.remove('active'));
+    c.classList.add('active');
+    currentFilter = c.dataset.filter;
+    render();
+  }));
+
+  searchInput.addEventListener('input', render);
+
+  render();
+</script>
 
 </body>
 </html>
